@@ -4,6 +4,6 @@ Aplikasi yang menghubungkan antara pemilik sampah organik dengan petani maggot l
 
 OMAYGOT 
 Ketua Kelompok: 
-Anggota 1:
+Anggota 1: NAUFAL SEPTIO - 22/502670/TK/54886
 Anggota 2: RAKHEL FADHILA NASTITI - 22/504692/TK/55216
 
