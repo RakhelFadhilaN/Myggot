@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MilestoneTG.TransientFaultHandling.Data.Postgres</name>
+    </assembly>
+    <members>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions">
+            <summary>
+            Provides a set of extension methods that add retry capabilities to the standard System.Data.SqlClient.SqlCommand implementation.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteNonQueryWithRetry(Npgsql.NpgsqlCommand)">
+            <summary>
+            Executes a Transact-Npgsql statement against the connection and returns the number of rows affected. Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteNonQueryWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a Transact-Npgsql statement against the connection and returns the number of rows affected. Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteNonQueryWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a Transact-Npgsql statement against the connection and returns the number of rows affected. Uses the specified retry policies when executing the command
+            and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object that contains the results.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object that contains the results.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object that contains the results.
+            Uses the specified retry policies when executing the command and
+            establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand,System.Data.CommandBehavior)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object by using the specified 
+            command behavior. Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand,System.Data.CommandBehavior,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object by using the specified
+            command behavior. Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteReaderWithRetry(Npgsql.NpgsqlCommand,System.Data.CommandBehavior,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a NpgsqlDataReader object by using the specified
+            command behavior. Uses the specified retry policies when executing the command
+            and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>A System.Data.NpgsqlClient.NpgsqlDataReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteScalarWithRetry(Npgsql.NpgsqlCommand)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteScalarWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteScalarWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the specified retry policies when executing the command and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteXmlReaderWithRetry(Npgsql.NpgsqlCommand)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteXmlReaderWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlCommandExtensions.ExecuteXmlReaderWithRetry(Npgsql.NpgsqlCommand,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the specified retry policies when executing the command and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlConnectionExtensions">
+            <summary>
+            Provides a set of extension methods that add retry capabilities to the standard <see cref="T:System.Data.SqlClient.SqlConnection"/> implementation.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlConnectionExtensions.OpenWithRetry(Npgsql.NpgsqlConnection)">
+            <summary>
+            Opens a database connection with the connection settings specified in the ConnectionString property of the connection object.
+            Uses the default retry policy when opening the connection.
+            </summary>
+            <param name="connection">The connection object that is required for the extension method declaration.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.NpgsqlConnectionExtensions.OpenWithRetry(Npgsql.NpgsqlConnection,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Opens a database connection with the connection settings specified in the ConnectionString property of the connection object.
+            Uses the specified retry policy when opening the connection.
+            </summary>
+            <param name="connection">The connection object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a request if the connection fails.</param>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.Postgres.PostgreSqlDatabaseTransientErrorDetectionStrategy">
+            <summary>
+            Provides the transient error detection logic for transient faults that are specific to SQL Database.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.PostgreSqlDatabaseTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered as transient; otherwise, false.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection"/> class.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.#ctor(System.String,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection"/> class.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <param name="retryPolicy">The retry policy.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.#ctor(System.String,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection"/> class.
+            </summary>
+            <param name="connectionString">The connection string used to open the Npgsql Database.</param>
+            <param name="connectionRetryPolicy">The retry policy that defines whether to retry a request if a connection fails to be established.</param>
+            <param name="commandRetryPolicy">The retry policy that defines whether to retry a request if a command fails to be executed.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns>ReliableDbConnection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.CreateConnection(System.String)">
+            <summary>
+            Creates the connection.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <returns>DbConnection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.CreateConnectionStringFailoverPolicy">
+            <summary>
+            Creates the connection string failover policy.
+            </summary>
+            <returns>RetryPolicy.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.ReliableNpgsqlConnection.ExecuteXmlReader``1(System.Data.IDbCommand,System.Data.CommandBehavior,System.Boolean)">
+            <summary>
+            Executes the XML reader.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="command">The command.</param>
+            <param name="behavior">The behavior.</param>
+            <param name="closeOpenedConnectionOnSuccess">if set to <c>true</c> [close opened connection on success].</param>
+            <returns>T.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions">
+            <summary>
+            Extends the <see cref="T:MilestoneTG.TransientFaultHandling.RetryManager"/> class to use it with the Npgsql Database retry strategy.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.DefaultStrategyCommandTechnologyName">
+            <summary>
+            The technology name that can be used to get the default Npgsql command retry strategy.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.DefaultStrategyConnectionTechnologyName">
+            <summary>
+            The technology name that can be used to get the default Npgsql connection retry strategy.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.GetDefaultNpgsqlCommandRetryStrategy(MilestoneTG.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for Npgsql commands.
+            </summary>
+            <returns>The default retry strategy for Npgsql commands (or the default strategy, if no default could be found).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.GetDefaultNpgsqlCommandRetryPolicy(MilestoneTG.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Npgsql commands.
+            </summary>
+            <returns>The retry policy for Npgsql commands with the corresponding default strategy (or the default strategy, if no retry strategy assigned to Npgsql commands was found).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.GetDefaultNpgsqlConnectionRetryStrategy(MilestoneTG.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for Npgsql connections.
+            </summary>
+            <returns>The default retry strategy for Npgsql connections (or the default strategy, if no default could be found).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.Postgres.RetryManagerNpgsqlExtensions.GetDefaultNpgsqlConnectionRetryPolicy(MilestoneTG.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Npgsql connections.
+            </summary>
+            <returns>The retry policy for Npgsql connections with the corresponding default strategy (or the default strategy, if no retry strategy for Npgsql connections was found).</returns>
+        </member>
+    </members>
+</doc>

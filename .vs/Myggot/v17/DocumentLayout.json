@@ -1,0 +1,389 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|c:\\users\\rakhel\\all files\\damn codes\\myggot p3\\myggot\\myggot\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\send_1f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\send_1f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\classes\\wastehistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\classes\\wastehistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\rewards.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\rewards.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\send_1f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\send_1f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\classes\\accountcache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\classes\\accountcache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\rewards.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\rewards.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\send_1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\send_1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\classes\\isloggedin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\classes\\isloggedin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\send_2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\send_2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\send_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\send_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\myggot\\classes\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8405302A-94F2-4D9B-B0B1-74651F4BC832}|Myggot\\Myggot.csproj|solutionrelative:myggot\\classes\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 202,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\.gitignore",
+              "RelativeDocumentMoniker": "Myggot\\.gitignore",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\.gitignore",
+              "RelativeToolTip": "Myggot\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-25T05:06:04.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Rewards.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Rewards.cs",
+              "RelativeDocumentMoniker": "Myggot\\Rewards.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Rewards.cs [Design]",
+              "RelativeToolTip": "Myggot\\Rewards.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T04:17:39.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\appsettings.json",
+              "RelativeDocumentMoniker": "Myggot\\appsettings.json",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\appsettings.json",
+              "RelativeToolTip": "Myggot\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAC6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-24T20:49:50.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Send_1F.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1F.cs",
+              "RelativeDocumentMoniker": "Myggot\\Send_1F.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1F.cs",
+              "RelativeToolTip": "Myggot\\Send_1F.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAAGwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T02:46:37.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Register.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Register.cs",
+              "RelativeDocumentMoniker": "Myggot\\Register.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Register.cs",
+              "RelativeToolTip": "Myggot\\Register.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAqwJIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T15:50:31.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Register.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Register.cs",
+              "RelativeDocumentMoniker": "Myggot\\Register.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Register.cs [Design]",
+              "RelativeToolTip": "Myggot\\Register.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T15:50:24.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WasteHistory.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\WasteHistory.cs",
+              "RelativeDocumentMoniker": "Myggot\\Classes\\WasteHistory.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\WasteHistory.cs",
+              "RelativeToolTip": "Myggot\\Classes\\WasteHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T14:56:28.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Myggot\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Myggot\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T14:03:39.092Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Login.cs",
+              "RelativeDocumentMoniker": "Myggot\\Login.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Login.cs",
+              "RelativeToolTip": "Myggot\\Login.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T03:17:55.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\Order.cs",
+              "RelativeDocumentMoniker": "Myggot\\Classes\\Order.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\Order.cs",
+              "RelativeToolTip": "Myggot\\Classes\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T02:55:44.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Send_1.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1.cs",
+              "RelativeDocumentMoniker": "Myggot\\Send_1.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1.cs",
+              "RelativeToolTip": "Myggot\\Send_1.cs",
+              "ViewState": "AgIAACMBAAAAAAAAAAAiwDYBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T21:00:36.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Myggot\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Dashboard.cs",
+              "RelativeToolTip": "Myggot\\Dashboard.cs",
+              "ViewState": "AgIAAJ8BAAAAAAAAAAAAALMBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T20:46:06.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Program.cs",
+              "RelativeDocumentMoniker": "Myggot\\Program.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Program.cs",
+              "RelativeToolTip": "Myggot\\Program.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAqwC4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T14:15:26.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Login.cs",
+              "RelativeDocumentMoniker": "Myggot\\Login.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Login.cs [Design]",
+              "RelativeToolTip": "Myggot\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T03:17:49.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Send_1F.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1F.cs",
+              "RelativeDocumentMoniker": "Myggot\\Send_1F.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_1F.cs [Design]",
+              "RelativeToolTip": "Myggot\\Send_1F.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T02:44:53.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IsLoggedIn.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\IsLoggedIn.cs",
+              "RelativeDocumentMoniker": "Myggot\\Classes\\IsLoggedIn.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\IsLoggedIn.cs",
+              "RelativeToolTip": "Myggot\\Classes\\IsLoggedIn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T02:26:46.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AccountCache.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\AccountCache.cs",
+              "RelativeDocumentMoniker": "Myggot\\Classes\\AccountCache.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\AccountCache.cs",
+              "RelativeToolTip": "Myggot\\Classes\\AccountCache.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T03:26:08.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Send_3.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_3.cs",
+              "RelativeDocumentMoniker": "Myggot\\Send_3.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_3.cs",
+              "RelativeToolTip": "Myggot\\Send_3.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowHQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T21:00:40.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Send_2.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_2.cs",
+              "RelativeDocumentMoniker": "Myggot\\Send_2.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Send_2.cs",
+              "RelativeToolTip": "Myggot\\Send_2.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAQwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T21:00:38.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Rewards.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Rewards.cs",
+              "RelativeDocumentMoniker": "Myggot\\Rewards.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Rewards.cs",
+              "RelativeToolTip": "Myggot\\Rewards.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAYwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T21:00:32.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Notification.cs",
+              "RelativeDocumentMoniker": "Myggot\\Notification.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Notification.cs",
+              "RelativeToolTip": "Myggot\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T21:00:27.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Account.cs",
+              "RelativeDocumentMoniker": "Myggot\\Account.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Account.cs",
+              "RelativeToolTip": "Myggot\\Account.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwCwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T20:56:59.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "users.cs",
+              "DocumentMoniker": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\users.cs",
+              "RelativeDocumentMoniker": "Myggot\\Classes\\users.cs",
+              "ToolTip": "C:\\Users\\Rakhel\\All files\\damn codes\\Myggot p3\\Myggot\\Myggot\\Classes\\users.cs",
+              "RelativeToolTip": "Myggot\\Classes\\users.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAswCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T01:19:25.737Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

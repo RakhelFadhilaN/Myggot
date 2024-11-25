@@ -1,0 +1,865 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MilestoneTG.TransientFaultHandling</name>
+    </assembly>
+    <members>
+        <member name="T:MilestoneTG.TransientFaultHandling.AsyncExecution`1">
+            <summary>
+            Handles the execution and retries of the user-initiated task.
+            </summary>
+            <typeparam name="TResult">The result type of the user-initiated task.</typeparam>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.AsyncExecution">
+            <summary>
+            Provides a wrapper for a non-generic <see cref="T:System.Threading.Tasks.Task"/> and calls into the pipeline
+            to retry only the generic version of the <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.AsyncExecution.StartAsGenericTask(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Wraps the non-generic <see cref="T:System.Threading.Tasks.Task"/> into a generic <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+            <param name="taskAction">The task to wrap.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that wraps the non-generic <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy">
+            <summary>
+            A retry strategy with backoff parameters for calculating the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.DefaultClientBackoff">
+            <summary>
+            Represents the default amount of time used when calculating a random delta in the exponential 
+            delay between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.DefaultMaxBackoff">
+            <summary>
+            Represents the default maximum amount of time used when calculating the exponential 
+            delay between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.DefaultMinBackoff">
+            <summary>
+            Represents the default minimum amount of time used when calculating the exponential 
+            delay between retries.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy"/> class. 
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.#ctor(System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy"/> class with the specified 
+            retry settings.
+            </summary>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay 
+            between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy"/> class with the specified name and 
+            retry settings.
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay 
+            between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy"/> class with the specified name, 
+            retry settings, and fast retry option.
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay 
+            between retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent 
+            retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ExponentialBackoffRetryStrategy.GetShouldRetryHandler">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy">
+            <summary>
+            Represents a retry strategy with a specified number of retry attempts and a default, fixed 
+            time interval between retries.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy"/> class. 
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy"/> class with the 
+            specified number of retry attempts. 
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy"/> class with the 
+            specified number of retry attempts and time interval. 
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy"/> class with the 
+            specified number of retry attempts, time interval, and retry strategy. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy"/> class with the 
+            specified number of retry attempts, time interval, retry strategy, and fast start option. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. 
+            The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.FixedIntervalRetryStrategy.GetShouldRetryHandler">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Guard">
+            <summary>
+            Implements the common guard methods.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Guard.ArgumentNotNull(System.Object,System.String)">
+            <summary>
+            Checks an argument to ensure that it isn't null.
+            </summary>
+            <param name="argumentValue">The argument value to check.</param>
+            <param name="argumentName">The name of the argument.</param>
+            <returns>The return value should be ignored. It is intended to be used only when validating arguments during instance creation (for example, when calling the base constructor).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Guard.ArgumentNotNegativeValue(System.Int32,System.String)">
+            <summary>
+            Checks an argument to ensure that its 32-bit signed value isn't negative.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Int32"/> value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Guard.ArgumentNotNegativeValue(System.Int64,System.String)">
+            <summary>
+            Checks an argument to ensure that its 64-bit signed value isn't negative.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Int64"/> value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Guard.ArgumentNotGreaterThan(System.Double,System.Double,System.String)">
+            <summary>
+            Checks an argument to ensure that its value doesn't exceed the specified ceiling baseline.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Double"/> value of the argument.</param>
+            <param name="ceilingValue">The <see cref="T:System.Double"/> ceiling value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy">
+            <summary>
+            A retry strategy with a specified number of retry attempts and an incremental time 
+            interval between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.DefaultRetryIncrement">
+            <summary>
+            Represents the default time increment between retry attempts in the progressive delay policy.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy"/> class. 
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.#ctor(System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy"/> class with the specified retry settings.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive 
+            delay between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy"/> class with the specified name and retry settings.
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive 
+            delay between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy"/> class with the specified number of retry attempts, 
+            time interval, retry strategy, and fast start option. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between 
+            retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent 
+            retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.IncrementalRetryStrategy.GetShouldRetryHandler">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy">
+            <summary>
+            Defines an interface that must be implemented by custom components responsible for 
+            detecting specific transient conditions.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that 
+            can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered as transient; otherwise, 
+            false.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ArgumentCannotBeGreaterThanBaseline">
+            <summary>
+              Looks up a localized string similar to The specified argument {0} cannot be greater than its ceiling value of {1}..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ArgumentCannotBeNegative">
+            <summary>
+              Looks up a localized string similar to The specified argument {0} cannot be initialized with a negative value..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ConnectionHasNotBeenInitialized">
+            <summary>
+              Looks up a localized string similar to Connection property has not been initialized..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.DefaultRetryStrategyMappingNotFound">
+            <summary>
+              Looks up a localized string similar to Default retry strategy for technology {0}, named &apos;{1}&apos;, is not defined..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.DefaultRetryStrategyNotFound">
+            <summary>
+              Looks up a localized string similar to Default retry strategy for technology {0} was not not defined, and there is no overall default strategy..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ExceptionRetryManagerAlreadySet">
+            <summary>
+              Looks up a localized string similar to The RetryManager is already set..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ExceptionRetryManagerNotSet">
+            <summary>
+              Looks up a localized string similar to The default RetryManager has not been set. Set it by invoking the RetryManager.SetDefault static method, or if you are using declarative configuration, you can invoke the RetryPolicyFactory.CreateDefault() method to automatically create the retry manager from the configuration file..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.ITransientErrorDetectionStrategyNotImplemented">
+            <summary>
+              Looks up a localized string similar to The error detection strategy type must implement the ITransientErrorDetectionStrategy interface..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.RetryLimitExceeded">
+            <summary>
+              Looks up a localized string similar to The action has exceeded its defined retry limit..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.RetryStrategyNotFound">
+            <summary>
+              Looks up a localized string similar to The retry strategy with name &apos;{0}&apos; cannot be found..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.StringCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to The specified string argument {0} must not be empty..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.TaskCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The specified argument &apos;{0}&apos; cannot return a null task when invoked..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Properties.Resources.TaskMustBeScheduled">
+            <summary>
+              Looks up a localized string similar to The specified argument &apos;{0}&apos; must return a scheduled task (also known as &quot;hot&quot; task) when invoked..
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryCondition">
+            <summary>
+            Defines a retry condition.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryCondition.#ctor(System.Boolean,System.TimeSpan)">
+            <param name="retryAllowed">Is retry allowed.</param>
+            <param name="delay">The delay that indicates how long the current thread will be suspended before.
+            the next iteration is invoked.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryCondition.DelayBeforeRetry">
+            <summary>
+            Gets or sets the retry interval value for retry.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryCondition.RetryAllowed">
+            <summary>
+            Gets or sets a value indicating whether retry attempt is allowed.
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryingEventArgs">
+            <summary>
+            Contains information that is required for the <see cref="E:MilestoneTG.TransientFaultHandling.RetryPolicy.Retrying"/> event.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryingEventArgs.#ctor(System.Int32,System.TimeSpan,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryingEventArgs"/> class.
+            </summary>
+            <param name="currentRetryCount">The current retry attempt count.</param>
+            <param name="delay">The delay that indicates how long the current thread will be 
+            suspended before the next iteration is invoked.</param>
+            <param name="lastException">The exception that caused the retry conditions to occur.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryingEventArgs.CurrentRetryCount">
+            <summary>
+            Gets the current retry count.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryingEventArgs.Delay">
+            <summary>
+            Gets the delay that indicates how long the current thread will be suspended before the 
+            next iteration is invoked.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryingEventArgs.LastException">
+            <summary>
+            Gets the exception that caused the retry conditions to occur.
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryLimitExceededException">
+            <summary>
+            The special type of exception that provides managed exit from a retry loop. The user code can use this
+            exception to notify the retry policy that no further retry attempts are required.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryLimitExceededException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryLimitExceededException"/> class with a default error message.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryLimitExceededException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryLimitExceededException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryLimitExceededException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryLimitExceededException"/> class with a reference to the inner exception
+            that is the cause of this exception.
+            </summary>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryLimitExceededException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryLimitExceededException"/> class with a specified error message and inner exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryManager">
+            <summary>
+            Provides the entry point to the retry functionality.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{MilestoneTG.TransientFaultHandling.RetryStrategy})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryManager"/> class.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{MilestoneTG.TransientFaultHandling.RetryStrategy},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryManager"/> class with the specified retry 
+            strategies and default retry strategy name.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+            <param name="defaultRetryStrategyName">The default retry strategy.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{MilestoneTG.TransientFaultHandling.RetryStrategy},System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryManager"/> class with the specified retry 
+            strategies and defaults.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+            <param name="defaultRetryStrategyName">The default retry strategy.</param>
+            <param name="defaultRetryStrategyNamesMap">The names of the default strategies for different technologies.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryManager.Instance">
+            <summary>
+            Gets the default <see cref="T:MilestoneTG.TransientFaultHandling.RetryManager"/> for the application.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryManager.DefaultRetryStrategyName">
+            <summary>
+            Gets or sets the default retry strategy name.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.SetDefault(MilestoneTG.TransientFaultHandling.RetryManager)">
+            <summary>
+            Sets the specified retry manager as the default retry manager.
+            Will throw an exception if the manager is already set.
+            </summary>
+            <param name="retryManager">The retry manager.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.SetDefault(MilestoneTG.TransientFaultHandling.RetryManager,System.Boolean)">
+            <summary>
+            Sets the specified retry manager as the default retry manager.
+            </summary>
+            <param name="retryManager">The retry manager.</param>
+            <param name="throwIfSet">true to throw an exception if the manager is already set; otherwise, false.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.GetRetryPolicy``1">
+            <summary>
+            Returns a retry policy with the specified error detection strategy and the default retry strategy 
+            defined in the configuration. 
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> 
+            interface that is responsible for detecting transient conditions.</typeparam>
+            <returns>A new retry policy with the specified error detection strategy and the default retry 
+            strategy defined in the configuration.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.GetRetryPolicy``1(System.String)">
+            <summary>
+            Returns a retry policy with the specified error detection strategy and retry strategy.
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> 
+            interface that is responsible for detecting transient conditions.</typeparam>
+            <param name="retryStrategyName">The retry strategy name, as defined in the configuration.</param>
+            <returns>A new retry policy with the specified error detection strategy and the default retry 
+            strategy defined in the configuration.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.GetRetryStrategy">
+            <summary>
+            Returns the default retry strategy defined in the configuration.
+            </summary>
+            <returns>The retry strategy that matches the default strategy.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.GetRetryStrategy(System.String)">
+            <summary>
+            Returns the retry strategy that matches the specified name.
+            </summary>
+            <param name="retryStrategyName">The retry strategy name.</param>
+            <returns>The retry strategy that matches the specified name.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryManager.GetDefaultRetryStrategy(System.String)">
+            <summary>
+            Returns the retry strategy for the specified technology.
+            </summary>
+            <param name="technology">The technology to get the default retry strategy for.</param>
+            <returns>The retry strategy for the specified technology.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryPolicy">
+            <summary>
+            Provides the base implementation of the retry mechanism for unreliable actions and 
+            transient conditions.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicy.NoRetry">
+            <summary>
+            Returns a default policy that performs no retries, but invokes the action only once.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,MilestoneTG.TransientFaultHandling.RetryPolicyOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class using the supplied options.
+            </summary>
+            <param name="errorDetectionStrategy">The error detection strategy.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,MilestoneTG.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry 
+            attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is 
+            responsible for detecting transient conditions.</param>
+            <param name="retryStrategy">The strategy to use for this retry policy.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry 
+            attempts and default fixed time interval between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible 
+            for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry 
+            attempts and fixed time interval between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible 
+            for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The interval between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts 
+            and backoff parameters for calculating the exponential delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible 
+            for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time.</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The time value that will be used to calculate a random delta in the exponential delay 
+            between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.#ctor(MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry 
+            attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for 
+            detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between 
+            retries.</param>
+        </member>
+        <member name="E:MilestoneTG.TransientFaultHandling.RetryPolicy.Retrying">
+            <summary>
+            An instance of a callback delegate that will be invoked whenever a retry condition is encountered.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicy.RetryStrategy">
+            <summary>
+            Gets the retry strategy.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicy.ErrorDetectionStrategy">
+            <summary>
+            Gets the instance of the error detection strategy.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAction(System.Action)">
+            <summary>
+            Repetitively executes the specified action while it satisfies the current retry policy.
+            </summary>
+            <param name="action">A delegate that represents the executable action that doesn't return any results.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAction``1(System.Func{``0})">
+            <summary>
+            Repetitively executes the specified action while it satisfies the current retry policy.
+            </summary>
+            <typeparam name="TResult">The type of result expected from the executable action.</typeparam>
+            <param name="func">A delegate that represents the executable action that returns the result of 
+            type <typeparamref name="TResult"/>.</param>
+            <returns>The result from the action.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Repetitively executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskAction">A function that returns a started task (also known as "hot" task).</param>
+            <returns>
+            A task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Repetitively executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskAction">A function that returns a started task (also known as "hot" task).</param>
+            <param name="cancellationToken">The token used to cancel the retry operation. This token does not cancel 
+            the execution of the asynchronous task.</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Repeatedly executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskFunc">A function that returns a started task (also known as "hot" task).</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception 
+            must be observed.
+            </returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Repeatedly executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskFunc">A function that returns a started task (also known as "hot" task).</param>
+            <param name="cancellationToken">The token used to cancel the retry operation. This token does not 
+            cancel the execution of the asynchronous task.</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must 
+            be observed.
+            </returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy.OnRetrying(System.Int32,System.Exception,System.TimeSpan)">
+            <summary>
+            Notifies the subscribers whenever a retry condition is encountered.
+            </summary>
+            <param name="retryCount">The current retry attempt count.</param>
+            <param name="lastError">The exception that caused the retry conditions to occur.</param>
+            <param name="delay">The delay that indicates how long the current thread will be suspended before 
+            the next iteration is invoked.</param>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1">
+            <summary>
+            Provides a generic version of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy"/> class.
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:MilestoneTG.TransientFaultHandling.ITransientErrorDetectionStrategy"/> 
+            interface that is responsible for detecting transient conditions.</typeparam>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy`1.#ctor(MilestoneTG.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of 
+            retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="retryStrategy">The strategy to use for this retry policy.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of 
+            retry attempts and the default fixed time interval between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of 
+            retry attempts and a fixed time interval between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The interval between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of 
+            retry attempts and backoff parameters for calculating the exponential delay between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time.</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The time value that will be used to calculate a random delta in the 
+            exponential delay between retries.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of 
+            retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay 
+            between retries.</param>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryPolicyOptions">
+            <summary>
+            Supports creating a retry policy using configuration.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.EXPONENTIAL">
+            <summary>
+            Exponential backoff strategy
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.INCREMENTAL">
+            <summary>
+            Incremental strategy
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.FIXED">
+            <summary>
+            Fixed interval strategy
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.Enabled">
+            <summary>
+            Gets or sets whether or not retry is enabled. Setting to false sets the 
+            strategy to NoRetry.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.RetryStrategyName">
+            <summary>
+            Gets or sets the name of the retry strategy. Value must be one of the consts.
+            </summary>
+            <value>The name of the retry strategy.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.RetryCount">
+            <summary>
+            Gets or sets the retry count.
+            </summary>
+            <value>The retry count.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.FirstFastRetry">
+            <summary>
+            Gets or sets a value indicating whether [first fast retry].
+            </summary>
+            <value>if true, the first retry will be immediate and the remainder will be subject to the policy. Default: true.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.Interval">
+            <summary>
+            Gets or sets the interval for incremental and fixed strategies.
+            </summary>
+            <value>The interval.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.Increment">
+            <summary>
+            Gets or sets the increment for the incremental strategy.
+            </summary>
+            <value>The increment.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.MinBackoff">
+            <summary>
+            Gets or sets the minimum backoff for the exponential strategy.
+            </summary>
+            <value>The minimum backoff.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.MaxBackoff">
+            <summary>
+            Gets or sets the maximum backoff for the exponential strategy.
+            </summary>
+            <value>The maximum backoff.</value>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryPolicyOptions.DeltaBackoff">
+            <summary>
+            Gets or sets the delta backoff for the exponential strategy.
+            </summary>
+            <value>The delta backoff.</value>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.ShouldRetryHandler">
+            <summary>
+            Defines a callback delegate that will be invoked whenever a retry condition is encountered.
+            </summary>
+            <param name="retryCount">The current retry attempt count.</param>
+            <param name="lastException">The exception that caused the retry conditions to occur.</param>
+            <returns>A retry condition instance</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.RetryStrategy">
+            <summary>
+            Represents a retry strategy that determines the number of retry attempts and the interval 
+            between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryStrategy.DefaultClientRetryCount">
+            <summary>
+            Represents the default number of retry attempts.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryStrategy.DefaultRetryInterval">
+            <summary>
+            Represents the default interval between retries.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.RetryStrategy.DefaultFirstFastRetry">
+            <summary>
+            Represents the default flag indicating whether the first retry attempt will be made immediately,
+            whereas subsequent retries will remain subject to the retry interval.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryStrategy.NoRetry">
+            <summary>
+            Returns a default policy that performs no retries, but invokes the action only once.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryStrategy.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.RetryStrategy"/> class. 
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. 
+            The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryStrategy.FastFirstRetry">
+            <summary>
+            Gets or sets a value indicating whether the first retry attempt will be made immediately,
+            whereas subsequent retries will remain subject to the retry interval.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.RetryStrategy.Name">
+            <summary>
+            Gets the name of the retry strategy.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.RetryStrategy.GetShouldRetryHandler">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.TransientErrorIgnoreStrategy">
+            <summary>
+            Retry strategy that ignores any transient errors.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.TransientErrorIgnoreStrategy.IsTransient(System.Exception)">
+            <summary>
+            Always returns false.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>Always false.</returns>
+        </member>
+    </members>
+</doc>

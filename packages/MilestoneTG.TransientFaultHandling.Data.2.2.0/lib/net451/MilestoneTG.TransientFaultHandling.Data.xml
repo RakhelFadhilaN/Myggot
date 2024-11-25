@@ -1,0 +1,599 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MilestoneTG.TransientFaultHandling.Data</name>
+    </assembly>
+    <members>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.NetworkConnectivityErrorDetectionStrategy">
+            <summary>
+            Implements a strategy that detects network connectivity errors such as "host not found".
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.NetworkConnectivityErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that
+            can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered as transient; otherwise,
+            false.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection">
+            <summary>
+            Provides a reliable way of opening connections to, and executing commands against, the SQL Database 
+            databases taking potential network unreliability and connection retry requirements into account.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.#ctor(System.String,MilestoneTG.TransientFaultHandling.RetryPolicy,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection"/> class with the specified connection string
+            and a policy that defines whether to retry a request if a connection or command
+            fails.
+            </summary>
+            <param name="connectionString">The connection string used to open the SQL Database.</param>
+            <param name="connectionRetryPolicy">The retry policy that defines whether to retry a request if a connection fails to be established.</param>
+            <param name="commandRetryPolicy">The retry policy that defines whether to retry a request if a command fails to be executed.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.CreateConnectionStringFailoverPolicy">
+            <summary>
+            Creates the connection string failover policy.
+            </summary>
+            <returns>RetryPolicy.</returns>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ConnectionString">
+            <summary>
+            Gets or sets the connection string for opening a connection to the SQL Database.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ConnectionRetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry a connection request, based on how many 
+            times the request has been made and the reason for the last failure. 
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.CommandRetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry a command, based on how many 
+            times the request has been made and the reason for the last failure. 
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Current">
+            <summary>
+            Gets an instance of the SqlConnection object that represents the connection to a SQL Database instance.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.SessionTracingId">
+            <summary>
+            Gets the CONTEXT_INFO value that was set for the current session. This value can be used to trace query execution problems. 
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ConnectionTimeout">
+            <summary>
+            Gets a value that specifies the time to wait while trying to establish a connection before terminating
+            the attempt and generating an error.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Database">
+            <summary>
+            Gets the name of the current database or the database to be used after a
+            connection is opened.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.State">
+            <summary>
+            Gets the current state of the connection.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Open">
+            <summary>
+            Opens a database connection with the settings specified by the ConnectionString and ConnectionRetryPolicy properties.
+            </summary>
+            <returns>An object that represents the open connection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Open(MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Opens a database connection with the settings specified by the connection string and the specified retry policy.
+            </summary>
+            <param name="retryPolicy">The retry policy that defines whether to retry a request if the connection fails to open.</param>
+            <returns>An object that represents the open connection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand``1(System.Data.IDbCommand)">
+            <summary>
+            Executes a SQL command and returns a result that is defined by the specified type <typeparamref name="T"/>. This method uses the retry policy specified when 
+            instantiating the SqlAzureConnection class (or the default retry policy if no policy was set at construction time).
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Framework object that contains the result.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand``1(System.Data.IDbCommand,System.Data.CommandBehavior)">
+            <summary>
+            Executes a SQL command and returns a result that is defined by the specified type <typeparamref name="T"/>. This method uses the retry policy specified when 
+            instantiating the SqlAzureConnection class (or the default retry policy if no policy was set at construction time).
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="behavior">A description of the results of the query and its effect on the database.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand``1(System.Data.IDbCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a SQL command by using the specified retry policy, and returns a result that is defined by the specified type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand``1(System.Data.IDbCommand,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Data.CommandBehavior)">
+            <summary>
+            Executes a SQL command by using the specified retry policy, and returns a result that is defined by the specified type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <param name="behavior">A description of the results of the query and its effect on the database.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteXmlReader``1(System.Data.IDbCommand,System.Data.CommandBehavior,System.Boolean)">
+            <summary>
+            Executes the XML reader.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="command">The command.</param>
+            <param name="behavior">The behavior.</param>
+            <param name="closeOpenedConnectionOnSuccess">if set to <c>true</c> [close opened connection on success].</param>
+            <returns>T.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand(System.Data.IDbCommand)">
+            <summary>
+            Executes a SQL command and returns the number of rows affected.
+            </summary>
+            <param name="command">The SQL command to be executed.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ExecuteCommand(System.Data.IDbCommand,MilestoneTG.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a SQL command and returns the number of rows affected.
+            </summary>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Begins a database transaction with the specified System.Data.IsolationLevel value.
+            </summary>
+            <param name="il">One of the enumeration values that specifies the isolation level for the transaction.</param>
+            <returns>An object that represents the new transaction.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.BeginTransaction">
+            <summary>
+            Begins a database transaction.
+            </summary>
+            <returns>An object that represents the new transaction.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.ChangeDatabase(System.String)">
+            <summary>
+            Changes the current database for an open Connection object.
+            </summary>
+            <param name="databaseName">The name of the database to use in place of the current database.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.System#Data#IDbConnection#Open">
+            <summary>
+            Opens a database connection with the settings specified by the ConnectionString
+            property of the provider-specific Connection object.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Close">
+            <summary>
+            Closes the connection to the database.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.CreateCommand">
+            <summary>
+            Creates and returns a SqlCommand object that is associated with the underlying SqlConnection.
+            </summary>
+            <returns>A System.Data.SqlClient.SqlCommand object that is associated with the underlying connection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.System#Data#IDbConnection#CreateCommand">
+            <summary>
+            Creates and returns an object that implements the IDbCommand interface that is associated 
+            with the underlying SqlConnection.
+            </summary>
+            <returns>A System.Data.SqlClient.SqlCommand object that is associated with the underlying connection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.System#ICloneable#Clone">
+            <summary>
+            Creates a new connection that is a copy of the current instance, including the connection
+            string, connection retry policy, and command retry policy.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns>ReliableDbConnection.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Dispose">
+            <summary>
+            Performs application-defined tasks that are associated with freeing, releasing, or
+            resetting managed and unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or
+            resetting managed and unmanaged resources.
+            </summary>
+            <param name="disposing">A flag indicating that managed resources must be released.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.CreateConnection(System.String)">
+            <summary>
+            Creates the connection.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <returns>DbConnection.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.ReliableDbConnection.NonQueryResult">
+            <summary>
+            This helpers class is intended to be used exclusively for fetching the number of affected records when executing a command by using ExecuteNonQuery.
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.Resources.ConnectionHasNotBeenInitialized">
+            <summary>
+              Looks up a localized string similar to Connection property has not been initialized..
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.Resources.StringCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to The specified string argument {0} must not be empty..
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.SqlCommandFactory">
+            <summary>
+            Provides factory methods for instantiating SQL commands.
+            </summary>
+        </member>
+        <member name="F:MilestoneTG.TransientFaultHandling.Data.SqlCommandFactory.DefaultCommandTimeoutSeconds">
+            <summary>
+            Returns the default time-out that will be applied to all SQL commands constructed by this factory class.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlCommandFactory.CreateCommand(System.Data.IDbConnection)">
+            <summary>
+            Creates a generic command of type Stored Procedure and assigns the default command time-out.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <returns>A new SQL command that is initialized with the Stored Procedure command type and initial settings.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlCommandFactory.CreateCommand(System.Data.IDbConnection,System.String)">
+            <summary>
+            Creates a generic command of type Stored Procedure and assigns the specified command text and default command time-out to it.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <param name="commandText">The text of the command to run against the data source.</param>
+            <returns>A new SQL command that is initialized with the Stored Procedure command type, specified text, and initial settings.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlCommandFactory.CreateGetContextInfoCommand(System.Data.IDbConnection)">
+            <summary>
+            Creates a SQL command that is intended to return the connection's context ID, which is useful for tracing purposes.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <returns>A new SQL command that is initialized with the specified connection.</returns>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader">
+            <summary>
+            Provides a disposable wrapper for SQL XML data reader, which synchronizes the SQL connection
+            disposal with its own life cycle.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.#ctor(System.Data.IDbConnection,System.Xml.XmlReader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader"/> class that is associated with the specified SQL connection and the original XML reader.
+            </summary>
+            <param name="connection">The SQL connection that provides access to the XML data for this reader.</param>
+            <param name="innerReader">The original XML reader that is to be wrapped by this instance.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.AttributeCount">
+            <summary>
+            Returns the number of attributes on the current node.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.BaseURI">
+            <summary>
+            Returns the base Uniform Resource Identifier (URI) of the current node.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.Depth">
+            <summary>
+            Returns the depth of the current node in the XML document.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.EOF">
+            <summary>
+            Returns a value that indicates whether the reader is positioned at the end of the stream.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.HasValue">
+            <summary>
+            Returns a value that indicates whether the current node can have a <see cref="P:System.Xml.XmlReader.Value"/>.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.IsEmptyElement">
+            <summary>
+            Returns a value that indicates whether the current node is an empty element.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.LocalName">
+            <summary>
+            Returns the local name of the current node.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.NameTable">
+            <summary>
+            Returns the <see cref="T:System.Xml.XmlNameTable"/> that is associated with this implementation.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.NamespaceURI">
+            <summary>
+            Returns the namespace URI (as defined in the W3C Namespace specification) of the node on which the reader is positioned.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.NodeType">
+            <summary>
+            Returns the type of the current node.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.Prefix">
+            <summary>
+            Returns the namespace prefix that is associated with the current node.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.ReadState">
+            <summary>
+            Returns the state of the reader.
+            </summary>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.Value">
+            <summary>
+            Returns the text value of the current node.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.GetAttribute(System.String)">
+            <summary>
+            Returns the value of the attribute that has the specified name.
+            </summary>
+            <param name="name">The qualified name of the attribute.</param>
+            <returns>The value of the specified attribute, or null if the attribute isn't found or its value is <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.GetAttribute(System.Int32)">
+            <summary>
+            Returns the value of the attribute that has the specified index.
+            </summary>
+            <param name="i">The index of the attribute. The index is zero-based. (The first attribute has an index of 0.)</param>
+            <returns>The value of the specified attribute. This method does not move the reader.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.GetAttribute(System.String,System.String)">
+            <summary>
+            Returns the value of the attribute that has the specified name and namespace URI.
+            </summary>
+            <param name="name">The local name of the attribute.</param>
+            <param name="namespaceUri">The namespace URI of the attribute.</param>
+            <returns>The value of the specified attribute, or null if the attribute isn't found or its value is <see cref="F:System.String.Empty"/>. This method does not move the reader.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.Close">
+            <summary>
+            Closes both the original <see cref="T:System.Xml.XmlReader"/> and the associated SQL connection.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.LookupNamespace(System.String)">
+            <summary>
+            Resolves a namespace prefix in the current element's scope.
+            </summary>
+            <param name="prefix">The prefix whose namespace URI you want to resolve. To match the default namespace, pass an empty string.</param>
+            <returns>The namespace URI to which the prefix maps, or null if no matching prefix is found.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.MoveToAttribute(System.String,System.String)">
+            <summary>
+            Moves to the attribute that has the specified name and namespace URI.
+            </summary>
+            <param name="name">The local name of the attribute.</param>
+            <param name="ns">The namespace URI of the attribute.</param>
+            <returns>true if the attribute is found; otherwise, false. If false, the reader's position does not change.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.MoveToAttribute(System.String)">
+            <summary>
+            Moves to the attribute that has the specified name.
+            </summary>
+            <param name="name">The qualified name of the attribute.</param>
+            <returns>true if the attribute is found; otherwise, false. If false, the reader's position does not change.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.MoveToElement">
+            <summary>
+            Moves to the element that contains the current attribute node.
+            </summary>
+            <returns>true if the reader is positioned on an attribute (in which case, the reader moves to the element that owns the attribute); false if the reader is not positioned on an attribute (in which case, the position of the reader does not change).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.MoveToFirstAttribute">
+            <summary>
+            Moves to the first attribute.
+            </summary>
+            <returns>true if an attribute exists (in which case, the reader moves to the first attribute); otherwise, false (in which case, the position of the reader does not change).</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.MoveToNextAttribute">
+            <summary>
+            Moves to the next attribute.
+            </summary>
+            <returns>true if there is a next attribute; false if there are no more attributes.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.Read">
+            <summary>
+            Reads the next node from the stream.
+            </summary>
+            <returns>true if the next node was read successfully; false if there are no more nodes to read.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.ReadAttributeValue">
+            <summary>
+            Parses the attribute value into one or more Text, EntityReference, or EndEntity nodes.
+            </summary>
+            <returns>true if there are nodes to return, false if the reader is not positioned on an attribute node when the initial call is made or if all the attribute values have been read. An empty attribute such as misc="" returns true with a single node that has a value of <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.SqlXmlReader.ResolveEntity">
+            <summary>
+            Resolves the entity reference for EntityReference nodes.
+            </summary>
+        </member>
+        <member name="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope">
+            <summary>
+            Provides support for retry policy-aware transactional scope.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class. 
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified retry policy.
+            </summary>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified time-out value and requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified time-out value, transaction scope options, and retry policy.
+            Uses the ReadCommitted isolation level by default.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="transactionOptions">A <see cref="T:System.Transactions.TransactionOptions"/> structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the time-out value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified requirements and retry policy.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="transactionOptions">A <see cref="T:System.Transactions.TransactionOptions"/> structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the time-out value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified requirements and retry policy.
+            Uses the ReadCommitted isolation level by default.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.Transaction,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified retry policy and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.TimeSpan,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified time-out value, and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.TimeSpan,MilestoneTG.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope"/> class with the specified time-out value, and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Uses the specified retry policy.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="P:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.RetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.InvokeUnitOfWork">
+            <summary>
+            Executes the underlying unit of work and retries as prescribed by the current retry policy.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.Complete">
+            <summary>
+            Indicates that all operations within the scope have been completed successfully.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.Dispose">
+            <summary>
+            Ends the transaction scope.
+            </summary>
+        </member>
+        <member name="M:MilestoneTG.TransientFaultHandling.Data.TransactionRetryScope.InitializeRetryPolicy">
+            <summary>
+            Configures the specified retry policy to work with a transactional scope.
+            </summary>
+        </member>
+    </members>
+</doc>
